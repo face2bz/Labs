@@ -111,9 +111,19 @@ function historique($type, $page, $description){
 		));
 }
 
-function input($id){
+function input($id, $placeholder){
 	$value = isset($_POST[$id]) ? $_POST[$id] : '';
-	return "<input type='text' class='form-control' name='$id' value='$value'>";
+	return "<input type='text' placeholder='$placeholder' class='form-control' name='$id' value='$value'>";
+}
+
+function email($id, $placeholder){
+	$value = isset($_POST[$id]) ? $_POST[$id] : '';
+	return "<input type='email' placeholder='$placeholder' class='form-control' name='$id' value='$value'>";
+}
+
+function phone($id, $placeholder){
+	$value = isset($_POST[$id]) ? $_POST[$id] : '';
+	return "<input type='text' placeholder='$placeholder' class='form-control' name='$id' value='$value'>";
 }
 
 

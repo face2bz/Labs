@@ -22,6 +22,10 @@ if (isset($_POST['send'])) {
 
 	if ($f_nom != "") {
 
+		if ($f_tel != "") {
+
+			if (!filter_var($f_email, FILTER_VALIDATE_EMAIL) === false) {
+
 		$req = $bdd->prepare('SELECT * FROM fournisseurs WHERE f_nom = :f_nom AND id_membre = :id_membre');
 		$req->execute(array('f_nom' => $f_nom, 'id_membre' => $id_membre));
 		$donnees = $req->fetch();
@@ -58,6 +62,15 @@ if (isset($_POST['send'])) {
 			
 		}
 
+
+			}else{
+		setFlash('Attention l\'email est vide ou invalide', 'danger');
+	}
+
+		}else{
+		setFlash('Attention il n\'y à aucun numéro de téléphone', 'danger');
+	}
+
 	}else{
 		setFlash('Attention il n\'y à aucun nom de fournisseur.', 'danger');
 	}	
@@ -93,7 +106,7 @@ include 'header.php'; ?>
 
 		<div class="col-md-8 col-md-offset-2">
 			<a href="#myModal2" role="button" class="btn green" data-toggle="modal">
-				Voir la liste des fournisseurs </a> 
+				Voir la liste des fournisseurs déja enregistré </a> 
 
 				<div id="myModal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
 					<div class="modal-dialog">
@@ -136,12 +149,14 @@ include 'header.php'; ?>
 								<button type="submit" class="btn blue" name="send">Enregistrer</button>
 
 								<div class="form-group p-1-t">
-									<label>Nom du fournisseur</label>
+									<label class="control-label">Nom du fournisseur <span class="required" aria-required="true">
+										* </span>
+										</label>
 									<div class="input-group">
 										<span class="input-group-addon">
 											<i class="fa fa-pencil"></i>
 										</span>
-										<?php echo input('nom_fournisseur'); ?>
+										<?php echo input('nom_fournisseur','Ex : Auchan'); ?>
 									</div>
 								</div>
 
@@ -151,17 +166,19 @@ include 'header.php'; ?>
 										<span class="input-group-addon">
 											<i class="fa fa-globe"></i>
 										</span>
-										<?php echo input('site_fournisseur'); ?>
+										<?php echo input('site_fournisseur','Ex : http://auchan.fr'); ?>
 									</div>
 								</div>
 
 								<div class="form-group">
-									<label>Email</label>
+									<label class="control-label">Email <span class="required" aria-required="true">
+										* </span>
+										</label>
 									<div class="input-group">
 										<span class="input-group-addon">
 											<i class="fa fa-envelope"></i>
 										</span>
-										<?php echo input('email'); ?>
+										<?php echo email('email', 'Ex : contact@little-owl.fr'); ?>
 									</div>
 								</div>
 
@@ -171,17 +188,19 @@ include 'header.php'; ?>
 										<span class="input-group-addon">
 											<i class="fa fa-folder"></i>
 										</span>
-										<?php echo input('ref'); ?>
+										<?php echo input('ref', 'Ex : BX200DFER'); ?>
 									</div>
 								</div>
 
 								<div class="form-group">
-									<label>Numéro de téléphone</label>
+									<label class="control-label">Numéro de téléphone <span class="required" aria-required="true">
+										* </span>
+										</label>
 									<div class="input-group">
 										<span class="input-group-addon">
 											<i class="fa fa-phone"></i>
 										</span>
-										<?php echo input('numero_tel'); ?>
+										<?php echo phone('numero_tel', 'Ex : 0102030405'); ?>
 									</div>
 								</div>
 
@@ -191,7 +210,7 @@ include 'header.php'; ?>
 										<span class="input-group-addon">
 											<i class="fa fa-fax"></i>
 										</span>
-										<?php echo input('numero_fax'); ?>
+										<?php echo phone('numero_fax', 'Ex : 0102030405'); ?>
 									</div>
 								</div>
 
@@ -201,7 +220,7 @@ include 'header.php'; ?>
 										<span class="input-group-addon">
 											<i class="fa fa-home"></i>
 										</span>									
-										<?php echo input('adresse'); ?>
+										<?php echo input('adresse', 'Ex : 24 rue du moulin'); ?>
 
 									</div>
 								</div>
@@ -212,7 +231,7 @@ include 'header.php'; ?>
 										<span class="input-group-addon">
 											<i class="fa fa-home"></i>
 										</span>
-										<?php echo input('code_postal'); ?>								
+										<?php echo input('code_postal', 'Ex : 13004'); ?>								
 									</div>
 								</div>
 
@@ -222,7 +241,7 @@ include 'header.php'; ?>
 										<span class="input-group-addon">
 											<i class="fa fa-home"></i>
 										</span>
-										<?php echo input('ville'); ?>								
+										<?php echo input('ville', 'Ex : Marseille'); ?>								
 									</div>
 								</div>
 
