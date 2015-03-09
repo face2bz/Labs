@@ -55,7 +55,7 @@ include 'header.php'; ?>
 									Nom
 								</th>
 								<th>
-									Site Web
+									Email
 								</th>
 								<th>
 									Pays
@@ -65,6 +65,9 @@ include 'header.php'; ?>
 								</th>
 								<th>
 									Référence
+								</th>
+								<th>
+									Commentaire
 								</th>
 							</tr>
 						</thead>
@@ -78,11 +81,12 @@ include 'header.php'; ?>
 								?>
 								<tr>
 									<td>  <a href="fournisseur.php?f=<?php echo $donnees['id_fournisseur']; ?>"><?php echo $donnees['f_nom']; ?></a>    </td>
-									<td><?php echo $donnees['f_site']; ?> </td>
+									<td> <a href="mailto:<?php echo $donnees['f_email']; ?>"><?php echo $donnees['f_email']; ?></a>  </td>
 									<td><img src="../../assets/global/img/flags/<?php echo strtolower($donnees['f_pays']); ?>.png"></i></td>
 
 									<td><?php echo $donnees['f_tel']; ?> </td>
 									<td><?php echo $donnees['f_ref']; ?> </td>
+									<td><?php echo $donnees['f_commentaire']; ?> </td>
 								</tr>
 								<?php									
 							} 

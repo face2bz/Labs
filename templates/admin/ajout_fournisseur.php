@@ -494,7 +494,7 @@ include 'header.php'; ?>
 								<div class="form-group">
 									<label class="control-label col-md-3">Commentaire</label>
 									<div class="col-md-9">
-										<textarea name="markdown" data-provide="markdown" rows="10" data-error-container="#editor_error"></textarea>
+										<textarea name="commentaire" data-provide="markdown" rows="10" data-error-container="#editor_error"><?php if (isset($_POST['commentaire'])){ echo $_POST['commentaire'];} ?></textarea>
 										<div id="editor_error">
 										</div>
 									</div>
