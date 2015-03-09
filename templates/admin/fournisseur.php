@@ -108,26 +108,26 @@ include 'header.php';
 									<div class="row list-separated profile-stat">
 										<div class="col-md-4 col-sm-4 col-xs-6">
 											<div class="uppercase profile-stat-title">
-												37
+												60
 											</div>
 											<div class="uppercase profile-stat-text">
-												Projects
+												Commandes
 											</div>
 										</div>
 										<div class="col-md-4 col-sm-4 col-xs-6">
 											<div class="uppercase profile-stat-title">
-												51
+												20
 											</div>
 											<div class="uppercase profile-stat-text">
-												Tasks
+												Retard
 											</div>
 										</div>
 										<div class="col-md-4 col-sm-4 col-xs-6">
 											<div class="uppercase profile-stat-title">
-												61
+												12%
 											</div>
 											<div class="uppercase profile-stat-text">
-												Uploads
+												Pourcentage
 											</div>
 										</div>
 									</div>
@@ -137,11 +137,18 @@ include 'header.php';
 										<span class="profile-desc-text"> Lorem ipsum dolor sit amet diam nonummy nibh dolore. </span>
 										<div class="margin-top-20 profile-desc-link">
 											<i class="fa fa-globe"></i>
-											<a href="<?php echo $donnees['f_site']; ?>"><?php echo $donnees['f_site']; ?></a>
+											
+											<?php if ($donnees['f_site'] == '') {
+												echo "Aucun site";
+											}else{
+												echo '<a href="<?php echo $donnees["f_site"]; ?>"><?php echo $donnees["f_site"]; ?></a>';
+											} ?>
+
+											
 										</div>
 										<div class="margin-top-20 profile-desc-link">
 											<i class="fa fa-twitter"></i>
-											<a href="http://www.twitter.com/keenthemes/">@keenthemes</a>
+											<a href="mailto:<?php echo $donnees['f_email']; ?>"><?php echo $donnees['f_email']; ?></a>
 										</div>
 										<div class="margin-top-20 profile-desc-link">
 											<i class="fa fa-facebook"></i>

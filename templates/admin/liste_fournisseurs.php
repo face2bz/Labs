@@ -10,7 +10,7 @@ include 'header.php'; ?>
 
 	<!-- BEGIN PAGE HEADER-->
 	<h3 class="page-title">
-		Ajout de fournisseur
+		Liste des fournisseurs
 	</h3>
 	<div class="page-bar">
 		<ul class="page-breadcrumb">
@@ -38,7 +38,7 @@ include 'header.php'; ?>
 			<div class="portlet box green-haze">
 				<div class="portlet-title">
 					<div class="caption">
-						<i class="fa fa-globe"></i>Datatable with TableTools
+						<i class="fa fa-globe"></i>Fournisseurs
 					</div>
 					<div class="tools">
 						<a href="javascript:;" class="reload">
@@ -86,7 +86,7 @@ include 'header.php'; ?>
 
 									<td><?php echo $donnees['f_tel']; ?> </td>
 									<td><?php echo $donnees['f_ref']; ?> </td>
-									<td><?php echo $donnees['f_commentaire']; ?> </td>
+									<td><?php echo htmlspecialchars_decode($donnees['f_commentaire']); ?> </td>
 								</tr>
 								<?php									
 							} 

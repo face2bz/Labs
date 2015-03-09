@@ -17,12 +17,12 @@ if (isset($_POST['send'])) {
 	$f_code_postal = securisation($_POST['code_postal']);
 	$f_ville = securisation($_POST['ville']);
 	$f_pays = securisation($_POST['country']);
-	$f_commentaire = securisation($_POST['commentaire']);
+	$f_commentaire = htmlentities($_POST['commentaire']);
 	$id_membre = $_SESSION['id_membre'];
 
 	if ($f_nom != "") {
 
-		if ($f_tel != "") {
+	
 
 			if (!filter_var($f_email, FILTER_VALIDATE_EMAIL) === false) {
 
@@ -67,9 +67,7 @@ if (isset($_POST['send'])) {
 		setFlash('Attention l\'email est vide ou invalide', 'danger');
 	}
 
-		}else{
-		setFlash('Attention il n\'y à aucun numéro de téléphone', 'danger');
-	}
+	
 
 	}else{
 		setFlash('Attention il n\'y à aucun nom de fournisseur.', 'danger');
@@ -193,9 +191,7 @@ include 'header.php'; ?>
 								</div>
 
 								<div class="form-group">
-									<label class="control-label">Numéro de téléphone <span class="required" aria-required="true">
-										* </span>
-										</label>
+									<label class="control-label">Numéro de téléphone </label>
 									<div class="input-group">
 										<span class="input-group-addon">
 											<i class="fa fa-phone"></i>
@@ -494,8 +490,8 @@ include 'header.php'; ?>
 								<div class="form-group">
 									<label class="control-label col-md-3">Commentaire</label>
 									<div class="col-md-9">
-										<textarea name="commentaire" data-provide="markdown" rows="10" data-error-container="#editor_error"><?php if (isset($_POST['commentaire'])){ echo $_POST['commentaire'];} ?></textarea>
-										<div id="editor_error">
+										<textarea class="ckeditor form-control" name="commentaire" rows="6" data-error-container="#editor2_error"><?php if (isset($_POST['commentaire'])){ echo $_POST['commentaire'];} ?></textarea>
+										<div id="editor2_error">
 										</div>
 									</div>
 								</div>

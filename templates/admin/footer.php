@@ -38,8 +38,7 @@
 
 
 <script type="text/javascript" src="../../assets/global/plugins/select2/select2.min.js"></script>
-<script type="text/javascript" src="../../assets/global/plugins/bootstrap-markdown/js/bootstrap-markdown.js"></script>
-<script type="text/javascript" src="../../assets/global/plugins/bootstrap-markdown/lib/markdown.js"></script>
+<script type="text/javascript" src="../../assets/global/plugins/ckeditor/ckeditor.js"></script>
 
 <script src="../../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
 <script src="../../assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
