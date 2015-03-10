@@ -2,7 +2,7 @@
 include 'bdd.php';
 include 'function.php';
 include 'check_session.php';
-
+$h_page = "Fournisseur";
 
 $fournisseurs = $bdd->prepare('SELECT *, membres.id_membre AS membre FROM membres, fournisseurs WHERE membres.id_membre = fournisseurs.id_membre AND membres.id_membre = :id AND fournisseurs.id_fournisseur = :id_fournisseur');
 $fournisseurs->execute(array('id' => $_SESSION['id_membre'], 'id_fournisseur' => $_GET['f'] ));
@@ -35,13 +35,29 @@ if (isset($_POST['modif'])) {
 
 	}else{
 		setFlash('Attention il n\'y à aucun nom de fournisseur.', 'danger');
+		
 	}
 }
 
 
+if (isset($_GET['del'])) {
+	checkCsrf();
+	$req = $bdd->prepare('DELETE FROM fournisseurs WHERE id_fournisseur = :id_fournisseur');
+	$req->execute(array(
+		'id_fournisseur' => $donnees['id_fournisseur']
+		));
+
+				// HISTORIQUE INSERT DEBUT
+	historique(3, $h_page, 'Suppression du fournisseur ' . $donnees['f_nom']);
+				// HISTORIQUE INSERT FIN
 
 
+	setFlash('Vous avez bien supprimé ' . $donnees['f_nom'], 'danger');
+	header('Location:liste_fournisseurs.php');
+	die();
+}else{
 
+}
 
 
 include 'header.php'; 
@@ -76,7 +92,7 @@ include 'header.php';
 	<!-- END PAGE HEADER-->
 	<!-- BEGIN PAGE CONTENT-->
 	<!-- BEGIN DASHBOARD STATS -->
-	<?php echo flash(); var_dump($_POST);?>
+	<?php echo flash();?>
 	<div class="row">
 
 
@@ -115,7 +131,7 @@ include 'header.php';
 
 										<form role="form" method="post" action="#">
 
-												<button type="button" data-dismiss="modal" class="btn default">Close</button>
+												<button type="button" data-dismiss="modal" class="btn default">Fermer</button>
 												<button type="submit" class="btn green" name="modif">Modifier</button>
 											
 											<div class="form-group p-1-t">
@@ -214,7 +230,7 @@ include 'header.php';
 
 
 											<div class="form-group">
-												<label>Pays</label>
+												<label>Pays <img src="../../assets/global/img/flags/<?php echo strtolower($donnees['f_pays']); ?>.png"></i></label>
 												<label class="control-label visible-ie8 visible-ie9">Pays</label>
 
 												<select class="form-control select2me" name="f_pays">
@@ -476,7 +492,7 @@ include 'header.php';
 						</div>
 
 						<a href="#myModal2" role="button" class="btn green btn btn-circle green-haze btn-sm" data-toggle="modal">Modifier</a>
-						<button type="button" class="btn btn-circle btn-danger btn-sm">Supprimer</button>
+						<a href="fournisseur.php?f=<?php echo $donnees['id_fournisseur'];?>&del=<?php echo $donnees['id_fournisseur'];?>&<?php echo csrf(); ?>" onclick="return confirm('Attention vous allez supprimer le fournisseur <?php echo $donnees['f_nom']; ?> êtes vous sûr?');"><button type="button" class="btn btn-circle btn-danger btn-sm">Supprimer</button></a>
 					</div>
 					<!-- END SIDEBAR BUTTONS -->
 					<!-- SIDEBAR MENU -->
