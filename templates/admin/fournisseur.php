@@ -29,8 +29,31 @@ if (isset($_POST['modif'])) {
 	$f_pays = securisation($_POST['f_pays']);
 	$f_commentaire = htmlentities($_POST['f_commentaire']);
 	$id_membre = $_SESSION['id_membre'];
+	$id_fournisseur = $donnees['id_fournisseur'];
 
 	if ($f_nom != "") {
+			$req = $bdd->prepare('UPDATE fournisseurs SET f_nom = :f_nom, f_site = :f_site, f_email = :f_email ,f_ref = :f_ref ,f_tel = :f_tel
+				,f_fax = :f_fax	,f_adresse = :f_adresse ,f_code_postal = :f_code_postal, f_ville = :f_ville	,f_pays = :f_pays,
+				f_commentaire = :f_commentaire WHERE id_fournisseur = :id_fournisseur AND id_membre = :id_membre');
+			$req->execute(array(
+				'f_nom' => $f_nom,
+				'f_ref' => $f_ref,
+				'f_email' => $f_email,
+				'f_site' => $f_site,		
+				'f_tel' => $f_tel,
+				'f_fax' => $f_fax,
+				'f_commentaire' => $f_commentaire,
+				'f_pays' => $f_pays,
+				'f_adresse' => $f_adresse,
+				'f_code_postal' => $f_code_postal,
+				'f_ville' => $f_ville,			
+				'id_membre' => $id_membre,
+				'id_fournisseur' =>$id_fournisseur
+				));
+
+			setFlash('Vous avez bien modifié ' . $donnees['f_nom']);
+			header("Location:fournisseur.php?f=".$donnees['id_fournisseur']."");
+			die();
 
 
 	}else{
