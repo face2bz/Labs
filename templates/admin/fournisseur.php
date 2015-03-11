@@ -93,7 +93,7 @@ include 'header.php';
 
 	<!-- BEGIN PAGE HEADER-->
 	<h3 class="page-title">
-		<?php echo $donnees['f_nom']; ?>
+		<?php echo $donnees['f_nom']; ?> <h5>Ref : <?php if ($donnees['f_ref'] == '') {	echo "Inconnu"; }else{ echo $donnees['f_ref'];  } ?></h5>
 	</h3>
 	<div class="page-bar">
 		<ul class="page-breadcrumb">
