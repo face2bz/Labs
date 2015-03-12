@@ -5,3 +5,5 @@
 .p-1-t{
 	padding-top: 30px;
 }
+
+#editor {overflow: défiler;  max-height: 300px}

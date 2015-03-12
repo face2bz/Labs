@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.1.4
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 04 Mars 2015 à 09:32
--- Version du serveur :  5.6.21
--- Version de PHP :  5.6.3
+-- Généré le :  Jeu 12 Mars 2015 à 17:40
+-- Version du serveur :  5.6.15-log
+-- Version de PHP :  5.5.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,14 +27,15 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `achats` (
-`id_achat` int(10) unsigned NOT NULL,
+  `id_achat` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `a_nom_produit` varchar(255) NOT NULL,
   `a_qt` int(11) NOT NULL,
   `a_last_prix` float(11,2) NOT NULL,
   `a_last_date` datetime NOT NULL,
   `id_type_produit` int(10) unsigned NOT NULL,
-  `id_membre` int(10) unsigned NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `id_membre` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_achat`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `achats`
@@ -51,7 +52,7 @@ INSERT INTO `achats` (`id_achat`, `a_nom_produit`, `a_qt`, `a_last_prix`, `a_las
 --
 
 CREATE TABLE IF NOT EXISTS `configurations` (
-`id_config` int(11) NOT NULL,
+  `id_config` int(11) NOT NULL AUTO_INCREMENT,
   `id_membre` int(11) NOT NULL,
   `c_nom_societe` varchar(255) NOT NULL DEFAULT 'Nom Société' COMMENT 'Nom de votre entreprise, société',
   `c_description` text NOT NULL COMMENT 'Description de votre société',
@@ -85,8 +86,9 @@ CREATE TABLE IF NOT EXISTS `configurations` (
   `c_taux_payplug` float(11,2) NOT NULL COMMENT 'Taux en % demandé par PayPlug',
   `c_montant_payplug` float(11,2) NOT NULL COMMENT 'Montant demandé par PayPlug',
   `c_check_paypal` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Sur 1 PayPal est utilisé',
-  `c_check_payplug` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Sur 1 PayPlug est utilisé'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf32;
+  `c_check_payplug` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Sur 1 PayPlug est utilisé',
+  PRIMARY KEY (`id_config`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf32 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `configurations`
@@ -104,7 +106,7 @@ INSERT INTO `configurations` (`id_config`, `id_membre`, `c_nom_societe`, `c_desc
 --
 
 CREATE TABLE IF NOT EXISTS `fournisseurs` (
-`id_fournisseur` int(11) NOT NULL,
+  `id_fournisseur` int(11) NOT NULL AUTO_INCREMENT,
   `f_nom` varchar(80) NOT NULL COMMENT 'Nom du fournisseur',
   `f_ref` varchar(255) NOT NULL DEFAULT '000000' COMMENT 'Référence du fournisseur',
   `f_email` varchar(255) NOT NULL DEFAULT 'email@email.fr',
@@ -117,21 +119,20 @@ CREATE TABLE IF NOT EXISTS `fournisseurs` (
   `f_adresse` varchar(255) NOT NULL DEFAULT 'Inconnu' COMMENT 'Adresse du du fournisseur',
   `f_code_postal` varchar(10) NOT NULL,
   `f_ville` varchar(255) NOT NULL,
-  `id_membre` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf32;
+  `id_membre` int(11) NOT NULL,
+  PRIMARY KEY (`id_fournisseur`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf32 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `fournisseurs`
 --
 
 INSERT INTO `fournisseurs` (`id_fournisseur`, `f_nom`, `f_ref`, `f_email`, `f_site`, `f_tel`, `f_fax`, `f_commentaire`, `f_pays`, `f_logo`, `f_adresse`, `f_code_postal`, `f_ville`, `id_membre`) VALUES
-(1, 'Hema', '', '', '', '', '', '', '', '', '', '', '', 3),
-(2, 'Polo', '', '', '', '', '', '', '', '', '', '', '', 1),
-(3, 'Hema', '', '', '', '0000000', '', '', '', '', '', '', '', 1),
-(4, 'Marco', '', '', '', '', '', '', 'FR', '', '', '', '', 1),
-(5, 'Polo', '', '', '', '', '', '', 'FR', '', '', '', '', 2),
-(6, 'Lidl', '', '', '', '', '', '', 'FR', '', '', '', '', 1),
-(7, 'Salutation', '', '', '', '', '', '', 'FR', '', '', '', '', 1);
+(1, 'Fournisseur vide', '', 'fourni@df.fd', '', '', '', '', 'FR', '', '', '', '', 1),
+(2, 'Fashion Baby House', '1381114', 'sdf@sdf.dsf', 'http://fr.aliexpress.com/store/1381114', '0102030405', '0102030406', '&lt;p&gt;&lt;span style=&quot;color:rgb(0, 0, 0); font-family:arial,helvetica,sans; font-size:11px&quot;&gt;Le&amp;nbsp;&lt;/span&gt;&lt;strong&gt;Lorem Ipsum&lt;/strong&gt;&lt;span style=&quot;color:rgb(0, 0, 0); font-family:arial,helvetica,sans; font-size:11px&quot;&gt;&amp;nbsp;est simplement du faux texte employ&amp;eacute; dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l&amp;#39;imprimerie depuis les ann&amp;eacute;es 1500, quand un peintre anonyme assembla ensemble des morceaux de texte pour r&amp;eacute;aliser un livre sp&amp;eacute;cimen de polices de texte. Il n&amp;#39;a pas fait que survivre cinq si&amp;egrave;cles, mais s&amp;#39;est aussi adapt&amp;eacute; &amp;agrave; la bureautique informatique, sans que son contenu n&amp;#39;en soit modifi&amp;eacute;. Il a &amp;eacute;t&amp;eacute; popularis&amp;eacute; dans les ann&amp;eacute;es 1960 gr&amp;acirc;ce &amp;agrave; la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus r&amp;eacute;cemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMake&lt;/span&gt;&lt;/p&gt;\r\n', 'FR', '', '69 je sais pas où', '59186', 'Espace', 1),
+(3, 'Alex', '', 'contact@sdf.fd', '', '', '', '', 'FR', '', '', '', '', 1),
+(4, 'Sdfsdf', '', 'sdf@sdfs.df', '', '', '', '', 'DK', '', '', '', '', 1),
+(5, 'JeanPaul', '', 'sdf@sdfsdf.df', '', '', '', '', 'FR', '', '', '', '', 2);
 
 -- --------------------------------------------------------
 
@@ -140,14 +141,15 @@ INSERT INTO `fournisseurs` (`id_fournisseur`, `f_nom`, `f_ref`, `f_email`, `f_si
 --
 
 CREATE TABLE IF NOT EXISTS `historiques` (
-`id_h` int(11) NOT NULL,
+  `id_h` int(11) NOT NULL AUTO_INCREMENT,
   `h_page` varchar(255) NOT NULL,
   `h_date` datetime NOT NULL,
   `h_type` varchar(255) NOT NULL,
   `h_description` text NOT NULL,
   `h_ip` varchar(255) NOT NULL,
-  `h_id_membre` int(10) unsigned NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf32;
+  `h_id_membre` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_h`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf32 AUTO_INCREMENT=15 ;
 
 --
 -- Contenu de la table `historiques`
@@ -160,7 +162,14 @@ INSERT INTO `historiques` (`id_h`, `h_page`, `h_date`, `h_type`, `h_description`
 (4, 'Ajout d''un fournisseur', '2015-02-27 21:17:14', '2', 'Ajout du fournisseur Marco', '127.0.0.1', 1),
 (5, 'Ajout d''un fournisseur', '2015-02-27 21:50:54', '2', 'Ajout du fournisseur Polo', '127.0.0.1', 2),
 (6, 'Ajout d''un fournisseur', '2015-02-27 23:49:18', '2', 'Ajout du fournisseur Lidl', '127.0.0.1', 1),
-(7, 'Ajout d''un fournisseur', '2015-02-27 23:51:59', '2', 'Ajout du fournisseur Salutation', '127.0.0.1', 1);
+(7, 'Ajout d''un fournisseur', '2015-02-27 23:51:59', '2', 'Ajout du fournisseur Salutation', '127.0.0.1', 1),
+(8, 'Ajout d''un fournisseur', '2015-03-10 08:41:05', '2', 'Ajout du fournisseur Fournisseur vide', '127.0.0.1', 1),
+(9, 'Ajout d''un fournisseur', '2015-03-10 08:44:04', '2', 'Ajout du fournisseur Fashion Baby House', '127.0.0.1', 1),
+(10, 'Ajout d''un fournisseur', '2015-03-10 13:45:28', '2', 'Ajout du fournisseur Alex', '127.0.0.1', 1),
+(11, 'Ajout d''un fournisseur', '2015-03-10 13:47:37', '2', 'Ajout du fournisseur Sdfsdf', '127.0.0.1', 1),
+(12, 'Ajout d''un type de produit', '2015-03-12 15:06:03', '2', 'Ajout du type produit Bagues', '127.0.0.1', 2),
+(13, 'Ajout d''un type de produit', '2015-03-12 15:07:09', '2', 'Ajout du type produit Bagues', '127.0.0.1', 2),
+(14, 'Ajout d''un fournisseur', '2015-03-12 15:32:59', '2', 'Ajout du fournisseur JeanPaul', '127.0.0.1', 2);
 
 -- --------------------------------------------------------
 
@@ -169,7 +178,7 @@ INSERT INTO `historiques` (`id_h`, `h_page`, `h_date`, `h_type`, `h_description`
 --
 
 CREATE TABLE IF NOT EXISTS `membres` (
-`id_membre` int(11) NOT NULL,
+  `id_membre` int(11) NOT NULL AUTO_INCREMENT,
   `m_nom_utilisateur` varchar(20) NOT NULL,
   `m_nom` varchar(20) NOT NULL,
   `m_prenom` varchar(20) NOT NULL,
@@ -179,8 +188,9 @@ CREATE TABLE IF NOT EXISTS `membres` (
   `m_date_inscription` datetime NOT NULL,
   `m_rang` int(11) NOT NULL DEFAULT '2',
   `m_valide` tinyint(1) NOT NULL,
-  `m_key` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `m_key` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_membre`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `membres`
@@ -198,7 +208,7 @@ INSERT INTO `membres` (`id_membre`, `m_nom_utilisateur`, `m_nom`, `m_prenom`, `m
 --
 
 CREATE TABLE IF NOT EXISTS `produit_c` (
-`id_produit_c` int(11) NOT NULL,
+  `id_produit_c` int(11) NOT NULL AUTO_INCREMENT,
   `pc_nom` varchar(255) NOT NULL COMMENT 'Nom du produit',
   `pc_ref` varchar(255) NOT NULL COMMENT 'Reférence du produit',
   `pc_type_produit` int(11) NOT NULL COMMENT 'id du type de produit',
@@ -208,8 +218,9 @@ CREATE TABLE IF NOT EXISTS `produit_c` (
   `pc_derniere_quantite` int(11) NOT NULL COMMENT 'Dernière quantité commandé',
   `pc_description` text NOT NULL COMMENT 'Description du produit',
   `pc_commentaire` text NOT NULL COMMENT 'Commentaire sur le produit',
-  `pc_dernier_fournisseur` int(11) NOT NULL COMMENT 'id du dernier fournisseur de la dernière commande'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf32 COMMENT='Produit consommable ';
+  `pc_dernier_fournisseur` int(11) NOT NULL COMMENT 'id du dernier fournisseur de la dernière commande',
+  PRIMARY KEY (`id_produit_c`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf32 COMMENT='Produit consommable ' AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `produit_c`
@@ -225,9 +236,10 @@ INSERT INTO `produit_c` (`id_produit_c`, `pc_nom`, `pc_ref`, `pc_type_produit`, 
 --
 
 CREATE TABLE IF NOT EXISTS `test` (
-`id_test` int(11) NOT NULL,
-  `budget` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+  `id_test` int(11) NOT NULL AUTO_INCREMENT,
+  `budget` int(11) NOT NULL,
+  PRIMARY KEY (`id_test`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Contenu de la table `test`
@@ -255,114 +267,22 @@ INSERT INTO `test` (`id_test`, `budget`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `type_produit` (
-`id_type_produit` int(11) NOT NULL,
-  `tp_nom` varchar(255) NOT NULL COMMENT 'Nom du type de produit',
-  `tp_description` text NOT NULL COMMENT 'Description du type de produit'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf32;
+  `id_type_produit` int(11) NOT NULL AUTO_INCREMENT,
+  `t_p_nom` varchar(255) NOT NULL COMMENT 'Nom du type de produit',
+  `t_p_ref` varchar(60) NOT NULL,
+  `t_p_commentaire` text NOT NULL COMMENT 'Description du type de produit',
+  `id_membre` int(11) NOT NULL,
+  PRIMARY KEY (`id_type_produit`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf32 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `type_produit`
 --
 
-INSERT INTO `type_produit` (`id_type_produit`, `tp_nom`, `tp_description`) VALUES
-(1, 'Cabochon', 'Cabochon :\r\n\r\nProduit qui permet de faire un effet loupe sur un dessin.');
+INSERT INTO `type_produit` (`id_type_produit`, `t_p_nom`, `t_p_ref`, `t_p_commentaire`, `id_membre`) VALUES
+(1, 'Cabochon', '', 'Cabochon :\r\n\r\nProduit qui permet de faire un effet loupe sur un dessin.', 1),
+(2, 'Bagues', 'KSDSD', '', 2);
 
---
--- Index pour les tables exportées
---
-
---
--- Index pour la table `achats`
---
-ALTER TABLE `achats`
- ADD PRIMARY KEY (`id_achat`);
-
---
--- Index pour la table `configurations`
---
-ALTER TABLE `configurations`
- ADD PRIMARY KEY (`id_config`);
-
---
--- Index pour la table `fournisseurs`
---
-ALTER TABLE `fournisseurs`
- ADD PRIMARY KEY (`id_fournisseur`);
-
---
--- Index pour la table `historiques`
---
-ALTER TABLE `historiques`
- ADD PRIMARY KEY (`id_h`);
-
---
--- Index pour la table `membres`
---
-ALTER TABLE `membres`
- ADD PRIMARY KEY (`id_membre`);
-
---
--- Index pour la table `produit_c`
---
-ALTER TABLE `produit_c`
- ADD PRIMARY KEY (`id_produit_c`);
-
---
--- Index pour la table `test`
---
-ALTER TABLE `test`
- ADD PRIMARY KEY (`id_test`);
-
---
--- Index pour la table `type_produit`
---
-ALTER TABLE `type_produit`
- ADD PRIMARY KEY (`id_type_produit`);
-
---
--- AUTO_INCREMENT pour les tables exportées
---
-
---
--- AUTO_INCREMENT pour la table `achats`
---
-ALTER TABLE `achats`
-MODIFY `id_achat` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT pour la table `configurations`
---
-ALTER TABLE `configurations`
-MODIFY `id_config` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT pour la table `fournisseurs`
---
-ALTER TABLE `fournisseurs`
-MODIFY `id_fournisseur` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT pour la table `historiques`
---
-ALTER TABLE `historiques`
-MODIFY `id_h` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT pour la table `membres`
---
-ALTER TABLE `membres`
-MODIFY `id_membre` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT pour la table `produit_c`
---
-ALTER TABLE `produit_c`
-MODIFY `id_produit_c` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT pour la table `test`
---
-ALTER TABLE `test`
-MODIFY `id_test` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
---
--- AUTO_INCREMENT pour la table `type_produit`
---
-ALTER TABLE `type_produit`
-MODIFY `id_type_produit` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

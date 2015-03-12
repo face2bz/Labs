@@ -4,18 +4,20 @@ include 'function.php';
 include 'check_session.php';
 $h_page = "Fournisseur";
 
+//Récupérations des données du fournisseur
+
 $fournisseurs = $bdd->prepare('SELECT *, membres.id_membre AS membre FROM membres, fournisseurs WHERE membres.id_membre = fournisseurs.id_membre AND membres.id_membre = :id AND fournisseurs.id_fournisseur = :id_fournisseur');
 $fournisseurs->execute(array('id' => $_SESSION['id_membre'], 'id_fournisseur' => $_GET['f'] ));
 $donnees = $fournisseurs->fetch();
 
+
+// Vérifie que le fournisseur appartient bien au membre sinon il est redirigé
 if ($_SESSION['id_membre'] != $donnees['membre']) {
 	header('Location:404.php');
 	die();
 }
 
-
-
-
+// Modification du fournisseur
 if (isset($_POST['modif'])) {
 	$f_nom = ucfirst(securisation($_POST['f_nom']));
 	$f_site = securisation($_POST['f_site']);
@@ -62,7 +64,7 @@ if (isset($_POST['modif'])) {
 	}
 }
 
-
+// Suppression du fournisseur
 if (isset($_GET['del'])) {
 	checkCsrf();
 	$req = $bdd->prepare('DELETE FROM fournisseurs WHERE id_fournisseur = :id_fournisseur');
@@ -71,7 +73,7 @@ if (isset($_GET['del'])) {
 		));
 
 				// HISTORIQUE INSERT DEBUT
-	historique(3, $h_page, 'Suppression du fournisseur ' . $donnees['f_nom']);
+					historique(3, $h_page, 'Suppression du fournisseur ' . $donnees['f_nom']);
 				// HISTORIQUE INSERT FIN
 
 

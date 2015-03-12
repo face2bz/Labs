@@ -28,6 +28,7 @@
 	<link href="../../assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" type="text/css" href="../../assets/global/plugins/select2/select2.css"/>
 	<link rel="stylesheet" type="text/css" href="../../assets/global/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
+	<link rel="stylesheet" type="text/css" href="../../assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css"/>
 	<link href="../../assets/admin/pages/css/profile.css" rel="stylesheet" type="text/css"/>
 	<link href="../../assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
 	<link href="../../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css"/>
@@ -190,7 +191,7 @@
 																	</li>
 																	<li>
 																		<a href="logout.php">
-																			<i class="icon-key"></i> Log Out </a>
+																			<i class="icon-key"></i> Déconnexion </a>
 																		</li>
 																	</ul>
 																</li>
@@ -257,9 +258,14 @@
 																						Ajout de produits</a>
 																					</li>
 																					<li>
-																						<a href="index_3.html">
+																						<a href="#">
 																							<i class="icon-graph"></i>
-																							New Dashboard #2</a>
+																							Voir type de produit</a>
+																						</li>
+																						<li>
+																						<a href="ajout_type_produit.php">
+																							<i class="icon-graph"></i>
+																							Ajouter un type de produit</a>
 																						</li>
 																					</ul>
 																				</li>

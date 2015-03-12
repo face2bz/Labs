@@ -61,6 +61,18 @@ function fournisseurs($id){
 	return $donnees[$id];
 }
 
+function typeproduit($id){
+	
+	global $bdd;
+	$typeproduit = $bdd->prepare('SELECT * FROM membres, type_produit WHERE membres.id_membre = type_produit.id_membre AND membres.id_membre = :id ORDER BY type_produit.t_p_nom ASC');
+	$typeproduit->execute(array('id' => $_SESSION['id_membre']));
+	while ($donnees = $typeproduit->fetch()){
+		echo '<option>' .  $donnees[$id] . '</option>';
+	} 
+	$typeproduit->closeCursor();
+	return $donnees[$id];
+}
+
 
 
 

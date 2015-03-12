@@ -94,6 +94,12 @@ include 'header.php'; ?>
 				Ajout fournisseur
 			</li>
 		</ul>
+		<div class="page-toolbar">
+			<div class="btn-group pull-right">				
+				<a href="#myModal2" role="button" class="btn green" data-toggle="modal">Liste des fournisseurs</a> 					
+			</div>
+		</div>
+
 
 	</div>
 	<!-- END PAGE HEADER-->
@@ -103,10 +109,7 @@ include 'header.php'; ?>
 	<div class="row">
 
 		<div class="col-md-8 col-md-offset-2">
-			<a href="#myModal2" role="button" class="btn green" data-toggle="modal">
-				Voir la liste des fournisseurs déja enregistré </a> 
-
-				<div id="myModal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+							<div id="myModal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -487,18 +490,34 @@ include 'header.php'; ?>
 								</div>
 
 
-								<div class="form-group">
-									<label class="control-label col-md-3">Commentaire</label>
-									<div class="col-md-9">
-										<textarea class="ckeditor form-control" name="commentaire" rows="6" data-error-container="#editor2_error"><?php if (isset($_POST['commentaire'])){ echo $_POST['commentaire'];} ?></textarea>
-										<div id="editor2_error">
+								<div class="form-group last">
+									<div class="col-md-12">
+										<!-- BEGIN Portlet PORTLET-->
+										<div class="portlet">
+											<div class="portlet-title">
+												<div class="caption">
+													<i class="fa fa-gift"></i>Commentaire
+												</div>												
+											</div>
+											<div class="portlet-body ">
+												<div class="col-md-12">
+													<textarea class="ckeditor form-control last" name="commentaire" rows="6" data-error-container="#editor2_error"><?php if (isset($_POST['commentaire'])){ echo $_POST['commentaire'];} ?></textarea>
+
+												</div>
+											</div>
 										</div>
+										<!-- END Portlet PORTLET-->
 									</div>
 								</div>
 
-								<div class="form-actions">
-									<button type="submit" class="btn blue" name="send">Enregistrer</button>
+
+
+							<div class="form-actions">
+								<div class="row p-1-t">
+									<div class="col-md-9"><button type="submit" class="btn blue" name="send">Enregistrer</button>
+									</div>
 								</div>
+							</div>
 							</form>
 						</div>
 					</div>
