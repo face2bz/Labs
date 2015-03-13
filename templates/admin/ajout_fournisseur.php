@@ -21,7 +21,6 @@ if (isset($_POST['send'])) {
 	$id_membre = $_SESSION['id_membre'];
 
 	if ($f_nom != "") {
-
 	
 
 			if (!filter_var($f_email, FILTER_VALIDATE_EMAIL) === false) {
